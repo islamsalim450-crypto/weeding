@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عدّادنا 💍</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+      font-family: Tahoma, Arial, sans-serif;
+      direction: rtl;
+      overflow: hidden;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      max-width: 90%;
+    }
+
+    .small { color: #7a0030; margin: 0; }
+
+    h1 { color: #b0003a; font-size: 32px; margin: 10px 0 25px; }
+
+    .heart {
+      display: inline-block;
+      cursor: pointer;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .countdown { display: flex; gap: 10px; justify-content: center; }
+
+    .box {
+      background: white;
+      border-radius: 15px;
+      padding: 15px 10px;
+      min-width: 65px;
+      box-shadow: 0 4px 10px rgba(176, 0, 58, 0.2);
+    }
+
+    .box span { display: block; font-size: 32px; font-weight: bold; color: #b0003a; }
+    .box small { color: #888; }
+
+    .date { color: #7a0030; font-weight: bold; margin-top: 20px; }
+    .message { font-size: 18px; color: #7a0030; min-height: 50px; }
+    .hint { font-size: 12px; color: #a05070; }
+
+    #hearts { position: fixed; inset: 0; pointer-events: none; }
+
+    #hearts span {
+      position: absolute;
+      bottom: -50px;
+      animation: float linear forwards;
+    }
+
+    @keyframes float {
+      to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="hearts"></div>
+
+  <div class="card">
+    <p class="small">العد التنازلي لأحلى يوم بحياتنا</p>
+
+    <h1>إسلام <span class="heart" id="heart">❤️</span> صفا</h1>
+
+    <div class="countdown" id="countdown">
+      <div class="box"><span id="days">0</span><small>يوم</small></div>
+      <div class="box"><span id="hours">0</span><small>ساعة</small></div>
+      <div class="box"><span id="minutes">0</span><small>دقيقة</small></div>
+      <div class="box"><span id="seconds">0</span><small>ثانية</small></div>
+    </div>
+
+    <p class="date">📅 1 / 1 / 2027</p>
+    <p class="message" id="message"></p>
+    <p class="hint">دوسي على القلب 😉</p>
+  </div>
+
+  <script>
+    // 📅 تاريخ العرس (غيّره من هنا)
+    const weddingDate = new Date("2027-01-01T00:00:00");
+
+    // 💌 رسائل الغزل (ضيف وعدّل براحتك)
+    const messages = [
+      "يلا عاد شوكت نتزوج 😩❤️",
+      "السلام عليكم زوجووووناااا 😂💍",
+      "المهم اني احبج هواية 💕",
+      "العداد يعد واني اركض 🏃‍♂️💨",
+      "مشتاق لايامنا الجاية سوية 🥰"
+    ];
+
+    let timer;
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<h2>💍 اليوم عرسنا! مبروك علينا 💍</h2>";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const seconds = Math.floor(diff / 1000) % 60;
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    function showMessage(index) {
+      document.getElementById("message").textContent = messages[index % messages.length];
+    }
+
+    function createHeart() {
+      const emojis = ["❤️", "💕", "💖", "🌸", "💗"];
+      const heart = document.createElement("span");
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = 15 + Math.random() * 25 + "px";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    // لما تدوس على القلب تطلع رسالة عشوائية
+    document.getElementById("heart").addEventListener("click", () => {
+      showMessage(Math.floor(Math.random() * messages.length));
+    });
+
+    updateCountdown();
+    showMessage(new Date().getDate());   // رسالة اليوم
+    timer = setInterval(updateCountdown, 1000);  // حدّث كل ثانية
+    setInterval(createHeart, 400);       // قلب جديد كل 0.4 ثانية
+  </script>
+</body>
+</html>
