@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طلب رسمي عاجل 📋</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Cairo", Tahoma, sans-serif;
+      background: linear-gradient(160deg, #fff4e6, #ffe0e9);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 16px;
+      overflow-x: hidden;
+    }
+
+    .ticket {
+      width: 100%;
+      max-width: 440px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(150, 60, 60, 0.15);
+      overflow: hidden;
+    }
+
+    .head {
+      background: #c0392b;
+      color: white;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .head h1 { margin: 0; font-size: 24px; font-weight: 900; }
+    .head p { margin: 4px 0 0; font-size: 13px; opacity: 0.9; }
+
+    .stamp {
+      display: inline-block;
+      margin-top: 10px;
+      border: 2px dashed #fff;
+      padding: 2px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      transform: rotate(-4deg);
+    }
+
+    .body { padding: 20px; }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px dashed #eee;
+      font-size: 15px;
+    }
+    .row b { color: #7a2a2a; white-space: nowrap; }
+    .row span { text-align: left; }
+
+    .priority { color: #c0392b; font-weight: 900; }
+
+    h2 { font-size: 17px; color: #7a2a2a; margin: 20px 0 8px; }
+
+    ul { margin: 0; padding-right: 20px; line-height: 2; font-size: 15px; }
+
+    .sign {
+      margin-top: 18px;
+      text-align: left;
+      font-size: 14px;
+      color: #555;
+    }
+    .sign strong { font-size: 18px; color: #c0392b; }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+      min-height: 56px;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 26px;
+      cursor: pointer;
+    }
+
+    #yes { background: #27ae60; color: white; box-shadow: 0 4px 0 #1e8449; }
+    #no  { background: #eee; color: #777; transition: top 0.25s, left 0.25s; }
+
+    #reaction {
+      text-align: center;
+      min-height: 28px;
+      margin-top: 12px;
+      color: #c0392b;
+      font-weight: 700;
+    }
+
+    /* شاشة الموافقة */
+    #approved {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    #approved .big { font-size: 64px; }
+    #approved h1 { color: #27ae60; margin: 8px 0; }
+    #approved p { font-size: 16px; line-height: 1.9; }
+
+    #send {
+      display: inline-block;
+      margin-top: 14px;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 14px;
+    }
+
+    .burst {
+      position: fixed;
+      pointer-events: none;
+      font-size: 28px;
+      animation: fly 1.6s ease-out forwards;
+    }
+    @keyframes fly {
+      to { transform: translate(var(--x), var(--y)) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ticket">
+    <div class="head">
+      <h1>📋 طلب رسمي عاجل</h1>
+      <p>رقم الطلب: #SAFA-LUNCH-001</p>
+      <div class="stamp">عاجل جداً ⚡</div>
+    </div>
+
+    <div id="form" class="body">
+      <div class="row"><b>إلى:</b> <span>خالتي الغالية أم صفا 🌹</span></div>
+      <div class="row"><b>من:</b> <span>إسلام (الخطيب المؤدب) 🙋‍♂️</span></div>
+      <div class="row"><b>الموضوع:</b> <span>طلب إذن غداء 🍽️</span></div>
+      <div class="row"><b>الوقت:</b> <span>اليوم إن شاء الله</span></div>
+      <div class="row"><b>الأولوية:</b> <span class="priority">🔴 حرجة (الخطيب جوعان ومشتاق)</span></div>
+
+      <h2>📝 تفاصيل الطلب</h2>
+      <p style="margin:0; line-height:1.9;">
+        أتشرف بطلب الإذن من حضرتچ حتى أطلع ويه صفا نتغدى سوه اليوم 🥹
+      </p>
+
+      <h2>✅ الضمانات المقدمة</h2>
+      <ul>
+        <li>أرجعها بالوقت، ولا دقيقة تأخير ⏰</li>
+        <li>أدير بالي عليها أكثر من عيوني 👀</li>
+        <li>حصتچ من الأكل توصل للبيت 🍗🥡</li>
+        <li>ندعيلچ بكل لگمة 🤲</li>
+      </ul>
+
+      <div class="sign">
+        مقدم الطلب<br>
+        <strong>إسلام ✍️</strong>
+      </div>
+
+      <div class="buttons">
+        <button id="yes">✅ موافقة</button>
+        <button id="no">❌ رفض</button>
+      </div>
+      <div id="reaction"></div>
+    </div>
+
+    <div id="approved">
+      <div class="big">🎉</div>
+      <h1>تمت الموافقة!</h1>
+      <p>
+        شكراً خالتي، تسلم إيدچ وعسى عمرچ طويل ❤️<br>
+        الطلب صار <b>مُعتمد رسمياً</b> ✅
+      </p>
+      <a id="send" target="_blank">📲 دزي الموافقة لإسلام</a>
+    </div>
+  </div>
+
+  <script>
+    // 💬 الجمل اللي تطلع كل ما تحاول تدوس رفض
+    const noTexts = [
+      "متأكدة خالة؟ 🥺",
+      "الزر عطلان، جربي الأخضر 😅",
+      "صفا هم موافقة ترى 👀",
+      "والله جوعان 😭",
+      "خالة الله يخليچ 🙏",
+      "زين جربي مرة ثانية 😂"
+    ];
+
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const reaction = document.getElementById("reaction");
+    let tries = 0;
+
+    // زر الرفض يهرب 🏃‍♂️
+    function runAway(e) {
+      e.preventDefault();
+      reaction.textContent = noTexts[tries % noTexts.length];
+      tries++;
+
+      // بعد 6 محاولات، زر الرفض نفسه يصير موافقة 😂
+      if (tries >= 6) {
+        noBtn.textContent = "✅ موافقة";
+        noBtn.style.background = "#27ae60";
+        noBtn.style.color = "white";
+        noBtn.onclick = approve;
+        noBtn.removeEventListener("pointerdown", runAway);
+        return;
+      }
+
+      const maxX = window.innerWidth - noBtn.offsetWidth - 16;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 16;
+      noBtn.style.position = "fixed";
+      noBtn.style.left = 16 + Math.random() * (maxX - 16) + "px";
+      noBtn.style.top = 16 + Math.random() * (maxY - 16) + "px";
+    }
+
+    noBtn.addEventListener("pointerdown", runAway);
+
+    // الموافقة 🎉
+    function approve() {
+      document.getElementById("form").style.display = "none";
+      noBtn.style.display = "none";
+      document.getElementById("approved").style.display = "block";
+
+      const msg = "✅ تمت الموافقة على طلب الغداء! بس رجّعها بالوقت 😄";
+      document.getElementById("send").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+
+      celebrate();
+    }
+
+    yesBtn.addEventListener("click", approve);
+
+    // احتفال: إيموجي تطير من النص
+    function celebrate() {
+      const emojis = ["🎉", "❤️", "🍗", "🥳", "🌹", "🍽️", "✨"];
+      for (let i = 0; i < 40; i++) {
+        const s = document.createElement("span");
+        s.className = "burst";
+        s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        s.style.left = window.innerWidth / 2 + "px";
+        s.style.top = window.innerHeight / 2 + "px";
+        s.style.setProperty("--x", (Math.random() - 0.5) * window.innerWidth + "px");
+        s.style.setProperty("--y", (Math.random() - 0.5) * window.innerHeight + "px");
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 1700);
+      }
+    }
+  </script>
+</body>
+</html>
